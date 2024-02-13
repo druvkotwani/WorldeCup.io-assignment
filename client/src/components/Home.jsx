@@ -1,12 +1,15 @@
 import { Avatar } from "@nextui-org/react";
 import { Input, Button } from "@nextui-org/react";
 import { UserIcon } from "../utils/Icons";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useNavigate } from 'react-router-dom';
+import _ from 'lodash'
 
 
 export default function Home() {
     const [name, setName] = useState('');
+    const getRandomIndex = () => Math.floor(Math.random() * 999);
+    const random = useMemo(() => getRandomIndex(), []);
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -14,7 +17,10 @@ export default function Home() {
     };
 
     const handleSubmit = (e) => {
+        if (!name) return
         e.preventDefault();
+        localStorage.setItem("name", name)
+        localStorage.setItem("avatar", `https://i.pravatar.cc/150?u=a04258a${_.random(100, 999)}d826712d`)
         {
             name.length > 0 && navigate('/chats');
         }
@@ -26,7 +32,7 @@ export default function Home() {
     return (
         <div className="bg-cover h-screen" style={{ backgroundImage: `url(${backgroundImageUrl})` }}>
             <div className="flex flex-col items-center justify-center h-screen">
-                <Avatar size="xl" src="https://i.pravatar.cc/150?u=a04258a2462d826712d" />
+                <Avatar radius='sm' size="xl" src={`https://i.pravatar.cc/150?u=a04258a${random}2d826712d`} />
                 <h1 className="sm:text-4xl text-white font-bold text-xl">WordleCup.io ChatApp Assignment</h1>
 
                 <div className="flex sm:flex-row flex-col gap-2 items-center justify-center my-4 w-full" >
