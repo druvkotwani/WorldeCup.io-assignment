@@ -32,13 +32,12 @@ export default function Home() {
                 <div className="flex sm:flex-row flex-col gap-2 items-center justify-center my-4 w-full" >
 
                     <form value={name} className="w-4/6 mx-2" onSubmit={(e) => handleSubmit(e)}>
-                        <Input radius='sm' type="name" label="Name" value={name} onChange={handleChange} />
+                        <Input radius='sm' type="text" label="Name" value={name} onChange={handleChange} />
                     </form>
                     <Button onClick={handleSubmit} color="primary" radius='sm' startContent={<UserIcon />} >
                         Login
                     </Button>
                 </div>
-
 
 
                 {/* <p className="text-lg mt-4 text-white">Created with 💗 by Dhruv</p> */}
