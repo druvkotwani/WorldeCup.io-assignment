@@ -7,6 +7,7 @@ export default function InputText({ addMessage }) {
     const [message, setMessage] = useState('')
 
     function addAMessage() {
+        console.log(message)
         addMessage({
             message
         })
@@ -15,7 +16,12 @@ export default function InputText({ addMessage }) {
 
     return (
         <div className='w-full flex items-center gap-3 mt-2 p-3 border-t ' >
-            <Input type="text" radius='sm' placeholder="Start Chatting..." value={message} onChange={(e) => setMessage(e.target.value)} />
+            <form className='w-full' value='message' onSubmit={(e) => {
+                e.preventDefault()
+                addAMessage()
+            }} >
+                <Input type="text" radius='sm' placeholder="Start Chatting..." value={message} onChange={(e) => setMessage(e.target.value)} />
+            </form>
             <Button isIconOnly aria-label="Send message" variant='faded' radius='sm' onClick={() => addAMessage()} >
                 <SendIcon />
             </Button>
