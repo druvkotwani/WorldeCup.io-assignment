@@ -2,10 +2,12 @@ import { Avatar } from "@nextui-org/react";
 import { Input, Button } from "@nextui-org/react";
 import { UserIcon } from "../utils/Icons";
 import { useState } from "react";
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Home() {
     const [name, setName] = useState('');
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setName(e.target.value);
@@ -13,6 +15,9 @@ export default function Home() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        {
+            name.length > 0 && navigate('/chats');
+        }
         setName('');
 
     };
