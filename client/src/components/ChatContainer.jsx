@@ -1,10 +1,9 @@
 import socketIOClient from "socket.io-client";
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from 'react-router-dom'
 import ChatBoxReciever, { ChatBoxSender } from "./ChatBox";
 import InputText from "./InputText";
-import { Avatar, Badge, Button } from "@nextui-org/react";
-import { LogoutIcon, UsersIcon } from "../utils/Icons";
+import { Avatar, Badge } from "@nextui-org/react";
+import { UsersIcon } from "../utils/Icons";
 const ChatContainer = () => {
     let socketio = socketIOClient('http://localhost:3000');
     const [chats, setChats] = useState([
@@ -14,7 +13,6 @@ const ChatContainer = () => {
     ]);
     const [user, setUser] = useState(localStorage.getItem('name'))
     const [avatar, setAvatar] = useState(localStorage.getItem('avatar'))
-    const navigate = useNavigate()
 
     useEffect(() => {
         socketio.on('chat', (msg) => {
@@ -29,17 +27,12 @@ const ChatContainer = () => {
     }
 
     function addMessage(chat) {
-        const newChat = { ...chat, user, avatar }
+        const newChat = { ...chat, user, avatar, status: 'success' }
         setChats([...chats, newChat])
         sendChatToSocket(newChat)
     }
 
-    function logout() {
-        localStorage.removeItem('name')
-        localStorage.removeItem('avatar')
-        setUser('')
-        navigate('/')
-    }
+
     function ChatsLists() {
         return chats.map((chat, index) => {
             if (chat.user === user) {
@@ -76,10 +69,7 @@ const ChatContainer = () => {
                         </div>
                     </div>
 
-                    <Button onClick={() => logout()} className="flex items-center justify-center" radius="sm" variant="flat"  >
-                        <LogoutIcon className="mr-2" />
-                        Logout
-                    </Button>
+
                 </div>
 
                 <div className="flex-grow overflow-y-auto  h-[calc(77vh-3rem)]  hide-scrollbar  " ref={chatListRef}>
@@ -110,7 +100,7 @@ const TotalUsers = ({ chats }) => {
     uniqueUsers.push({
         user: localStorage.getItem('name'),
         avatar: localStorage.getItem('avatar'),
-        status: localStorage.getItem('status') || 'success'
+        status: 'success'
     });
 
     uniqueUsers.forEach(user => {
