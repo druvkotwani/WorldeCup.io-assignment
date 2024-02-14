@@ -5,7 +5,7 @@ import InputText from "./InputText";
 import { Avatar, Badge } from "@nextui-org/react";
 import { UsersIcon } from "../utils/Icons";
 const ChatContainer = () => {
-    let socketio = socketIOClient('https://worlde-cup-io-assignment.vercel.app');
+    let socketio = socketIOClient('https://backedn-zm4f.onrender.com');
     const [chats, setChats] = useState([
         { user: 'Bot-1', message: 'This assignment is done by Dhruv', avatar: '/images/4.png', status: 'warning' },
         { user: 'Bot-2', message: 'These are hardcoded text', avatar: '/images/5.svg', status: 'default' },
