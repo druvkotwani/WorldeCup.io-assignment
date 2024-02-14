@@ -71,11 +71,11 @@ const ChatContainer = () => {
                 </Button>
             </div>
 
-            <div className="flex-grow overflow-y-auto  h-[calc(70vh-1rem)]  hide-scrollbar ">
+            <div className="flex-grow overflow-y-auto  h-[calc(77vh-3rem)]  hide-scrollbar ">
                 <ChatsLists />
             </div>
 
-            <div className="fixed bottom-0 left-0 right-0 sm:w-4/6 sm:mx-auto z-10 ">
+            <div className="fixed bottom-0 left-0 right-0 sm:w-4/6 sm:mx-auto z-10">
                 <InputText addMessage={addMessage} />
             </div>
         </>
