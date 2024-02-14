@@ -5,7 +5,7 @@ import InputText from "./InputText";
 import { Avatar, Badge } from "@nextui-org/react";
 import { UsersIcon } from "../utils/Icons";
 const ChatContainer = () => {
-    let socketio = socketIOClient('http://localhost:3000');
+    // let socketio = socketIOClient('http://localhost:3000');
     const [chats, setChats] = useState([
         { user: 'Bot-1', message: 'This assignment is done by Dhruv', avatar: '/images/4.png', status: 'warning' },
         { user: 'Bot-2', message: 'These are hardcoded text', avatar: '/images/5.svg', status: 'default' },
@@ -14,16 +14,16 @@ const ChatContainer = () => {
     const [user, setUser] = useState(localStorage.getItem('name'))
     const [avatar, setAvatar] = useState(localStorage.getItem('avatar'))
 
-    useEffect(() => {
-        socketio.on('chat', (msg) => {
-            setChats([...chats, msg])
-        })
-    })
+    // useEffect(() => {
+    //     socketio.on('chat', (msg) => {
+    //         setChats([...chats, msg])
+    //     })
+    // })
 
 
 
     function sendChatToSocket(chat) {
-        socketio.emit('chat', chat)
+        // socketio.emit('chat', chat)
     }
 
     function addMessage(chat) {
@@ -54,7 +54,7 @@ const ChatContainer = () => {
     return (
         <div className="flex items-start  justify-center bg-[#fef9fa]  border-t ">
             <TotalUsers chats={chats} />
-            <div className="sm:w-3/4 sm:border-l-1 sm:px-2">
+            <div className="sm:w-3/4 w-full sm:border-l-1 sm:px-2">
                 <div className="flex flex-row justify-between p-2  ">
                     <div className=" flex gap-2 items-center">
                         <Badge content="" color="success" shape="circle" placement="bottom-right">
@@ -118,30 +118,37 @@ const TotalUsers = ({ chats }) => {
 
     console.log(onlyUsers)
     return (
-        <div className="w-1/4 hidden sm:block ">
-            <h1 className="text-2xl font-bold flex items-center justify-center gap-2 border-b-1 py-2">
-                <UsersIcon />
-                Users
-            </h1>
-            <ul className="mx-auto">
-                {
-                    onlyUsers.map((user, index) => {
+        <>
+            <div className="w-1/4 hidden sm:block flex justify-center items-center">
+                <div>
+                    <h1 className="text-2xl font-bold flex items-center justify-center gap-2 border-b-1 py-2">
+                        <UsersIcon />
+                        Users
+                    </h1>
 
-                        return (
-                            <li key={index} className="flex items-center justify-start gap-2 p-2 border-b-1">
-                                <Badge content="" color={user.status} shape="circle" placement="bottom-right">
-                                    <Avatar
-                                        radius="full"
-                                        src={user.avatar}
-                                    />
-                                </Badge>
-                                <p className="text-base font-medium">{user.name}</p>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
-        </div>
+                    <ul className="mx-auto">
+                        {
+                            onlyUsers.map((user, index) => {
+
+                                return (
+                                    <li key={index} className="flex items-center justify-start gap-2 p-2 border-b-1">
+                                        <Badge content="" color={user.status} shape="circle" placement="bottom-right">
+                                            <Avatar
+                                                radius="full"
+                                                src={user.avatar}
+                                            />
+                                        </Badge>
+                                        <p className="text-base font-medium">{user.name}</p>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                </div>
+
+                {/* <p className="text-center  text-sm text-gray-500">Total Users: {onlyUsers.length} </p> */}
+            </div>
+        </>
     )
 }
 

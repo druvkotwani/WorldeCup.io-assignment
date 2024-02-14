@@ -21,11 +21,10 @@ const ChatHome = () => {
                 </h1>
                 <Button onClick={() => logout()} className="flex items-center justify-center min-w-6 sm:min-w-6  " radius="sm" variant="flat"  >
                     <LogoutIcon className="mr-2" />
-                    <span className='hidden sm:block'>Leave Room</span>
+                    <span className='hidden sm:block font-bold'>Leave Room</span>
                 </Button>
             </div>
             <div>
-
                 <ChatContainer />
             </div>
         </div>
