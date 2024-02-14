@@ -1,6 +1,6 @@
 import { Avatar, Badge } from '@nextui-org/react'
 
-export default function ChatBoxReciever({ avatar, message }) {
+export default function ChatBoxReciever({ avatar, message, color }) {
     const myStyle = {
         borderTopLeftRadius: '0',
         borderTopRightRadius: '0.7em',
@@ -11,7 +11,7 @@ export default function ChatBoxReciever({ avatar, message }) {
         <div className='flex flex-row justify-start  m-2 mt-3' >
 
             <div>
-                <Badge content="" color="success" shape="circle" placement="bottom-right">
+                <Badge content="" color={color} shape="circle" placement="bottom-right">
                     <Avatar
                         radius="full"
                         src={avatar}
@@ -26,7 +26,7 @@ export default function ChatBoxReciever({ avatar, message }) {
         </div >
     )
 }
-export function ChatBoxSender({ avatar, message }) {
+export function ChatBoxSender({ avatar, message, color }) {
     const myStyle = {
         borderTopLeftRadius: '0.7em',
         borderTopRightRadius: '0.7em',
@@ -37,7 +37,7 @@ export function ChatBoxSender({ avatar, message }) {
         <div className='flex flex-row justify-end  m-2 mt-3' >
             <div>
 
-                <Badge content="" color="success" shape="circle" placement="bottom-right">
+                <Badge content="" color={color} shape="circle" placement="bottom-right">
                     <Avatar
                         radius="full"
                         src={avatar}

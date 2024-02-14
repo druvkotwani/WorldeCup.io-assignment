@@ -8,9 +8,9 @@ import { LogoutIcon, UsersIcon } from "../utils/Icons";
 const ChatContainer = () => {
     let socketio = socketIOClient('http://localhost:3000');
     const [chats, setChats] = useState([
-        { user: 'Test[Bot]', message: 'This assignment is done by Dhruv', avatar: '/images/4.png' },
-        { user: 'Dhruv[Bot]', message: 'These are hardcoded text', avatar: '/images/5.svg' },
-        { user: 'Bhawna', message: 'How are you?', avatar: '/images/1.png' },
+        { user: 'Bot-1', message: 'This assignment is done by Dhruv', avatar: '/images/4.png', status: 'warning' },
+        { user: 'Bot-2', message: 'These are hardcoded text', avatar: '/images/5.svg', status: 'default' },
+        { user: 'SuperBot', message: 'How are you?', avatar: '/images/1.png', status: 'primary' },
     ]);
     const [user, setUser] = useState(localStorage.getItem('name'))
     const [avatar, setAvatar] = useState(localStorage.getItem('avatar'))
@@ -43,9 +43,9 @@ const ChatContainer = () => {
     function ChatsLists() {
         return chats.map((chat, index) => {
             if (chat.user === user) {
-                return <ChatBoxSender key={index} message={chat.message} avatar={chat.avatar} />
+                return <ChatBoxSender key={index} message={chat.message} avatar={chat.avatar} color={chat.status} />
             } else {
-                return <ChatBoxReciever key={index} message={chat.message} avatar={chat.avatar} />
+                return <ChatBoxReciever key={index} message={chat.message} avatar={chat.avatar} color={chat.status} />
             }
         })
     }
@@ -67,7 +67,7 @@ const ChatContainer = () => {
                         <Badge content="" color="success" shape="circle" placement="bottom-right">
                             <Avatar
                                 radius="full"
-                                src='/images/1.png'
+                                src={avatar}
                             />
                         </Badge>
                         <div className="">
@@ -109,7 +109,8 @@ const TotalUsers = ({ chats }) => {
 
     uniqueUsers.push({
         user: localStorage.getItem('name'),
-        avatar: localStorage.getItem('avatar')
+        avatar: localStorage.getItem('avatar'),
+        status: localStorage.getItem('status') || 'success'
     });
 
     uniqueUsers.forEach(user => {
@@ -120,8 +121,10 @@ const TotalUsers = ({ chats }) => {
 
     const onlyUsers = Object.values(uniqueUsersMap).map(user => ({
         name: user.user,
-        avatar: user.avatar
+        avatar: user.avatar,
+        status: user.status
     }));
+
 
     console.log(onlyUsers)
     return (
@@ -136,10 +139,12 @@ const TotalUsers = ({ chats }) => {
 
                         return (
                             <li key={index} className="flex items-center justify-start gap-2 p-2 border-b-1">
-                                <Avatar
-                                    radius="full"
-                                    src={user.avatar}
-                                />
+                                <Badge content="" color={user.status} shape="circle" placement="bottom-right">
+                                    <Avatar
+                                        radius="full"
+                                        src={user.avatar}
+                                    />
+                                </Badge>
                                 <p className="text-base font-medium">{user.name}</p>
                             </li>
                         )
