@@ -1,5 +1,5 @@
 import socketIOClient from "socket.io-client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import ChatBoxReciever, { ChatBoxSender } from "./ChatBox";
 import InputText from "./InputText";
@@ -48,6 +48,14 @@ const ChatContainer = () => {
             }
         })
     }
+    const chatListRef = useRef(null);
+
+    // Scroll to the bottom of the chat list when it updates
+    useEffect(() => {
+        if (chatListRef.current) {
+            chatListRef.current.scrollTop = chatListRef.current.scrollHeight;
+        }
+    }, [chats]);
 
     return (
         <>
@@ -71,7 +79,7 @@ const ChatContainer = () => {
                 </Button>
             </div>
 
-            <div className="flex-grow overflow-y-auto  h-[calc(77vh-3rem)]  hide-scrollbar ">
+            <div className="flex-grow overflow-y-auto  h-[calc(77vh-3rem)]  hide-scrollbar  " ref={chatListRef}>
                 <ChatsLists />
             </div>
 
