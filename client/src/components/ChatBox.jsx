@@ -10,12 +10,14 @@ export default function ChatBoxReciever({ avatar, message }) {
     return (
         <div className='flex flex-row justify-start  m-2 mt-3' >
 
-            <Badge content="" color="success" shape="circle" placement="bottom-right">
-                <Avatar
-                    radius="full"
-                    src={avatar}
-                />
-            </Badge>
+            <div>
+                <Badge content="" color="success" shape="circle" placement="bottom-right">
+                    <Avatar
+                        radius="full"
+                        src={avatar}
+                    />
+                </Badge>
+            </div>
 
             <p style={myStyle} className='mx-2 px-3 py-2 bg-[#eec1c1]  max-w-60 '  >
                 {message}
@@ -33,13 +35,16 @@ export function ChatBoxSender({ avatar, message }) {
     };
     return (
         <div className='flex flex-row justify-end  m-2 mt-3' >
-            <Badge content="" color="success" shape="circle" placement="bottom-right">
-                <Avatar
-                    radius="full"
-                    src={avatar}
-                />
-            </Badge>
-            <p style={myStyle} className='mx-2 px-3 py-2  bg-[#dcf8c6] rounded-lg max-w-60 h-10 '  >
+            <div>
+
+                <Badge content="" color="success" shape="circle" placement="bottom-right">
+                    <Avatar
+                        radius="full"
+                        src={avatar}
+                    />
+                </Badge>
+            </div>
+            <p style={myStyle} className='mx-2 px-3 py-2  bg-[#dcf8c6] rounded-lg max-w-60 '  >
                 {message}
             </p>
 
