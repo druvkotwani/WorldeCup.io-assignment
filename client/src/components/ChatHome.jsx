@@ -1,11 +1,16 @@
 import React from 'react';
 import ChatContainer from './ChatContainer';
+import { ChatIcon } from '../utils/Icons';
 
 const ChatHome = () => {
     return (
         <div className='h-full w-full sm:w-5/6 lg:w-4/6 mx-auto  m-4 '>
             <div className='h-16 bg-[#F6FAFE] flex items-center justify-center'>
-                <h1 className='text-2xl font-bold'>Chat App</h1>
+                <h1 className='text-2xl gap-2 presStart flex items-center justify-center'>
+                    <ChatIcon />
+                    Chat-Room
+                </h1>
+
             </div>
             <div>
 
