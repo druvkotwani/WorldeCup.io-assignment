@@ -54,7 +54,7 @@ const ChatContainer = () => {
     return (
         <div className="flex items-start  justify-center bg-[#fef9fa]  border-t ">
             <TotalUsers chats={chats} />
-            <div className="sm:w-3/4 w-full sm:border-l-1 ">
+            <div className="sm:w-3/4 w-full border-l-1 ">
                 <div className="flex flex-row justify-between p-2  ">
                     <div className=" flex gap-2 items-center">
                         <Badge content="" color="success" shape="circle" placement="bottom-right">
@@ -118,11 +118,13 @@ const TotalUsers = ({ chats }) => {
     console.log(onlyUsers)
     return (
         <>
-            <div className="w-1/4 hidden sm:block flex justify-center items-center">
+            <div className="w-1/4 justify-center items-center">
                 <div>
-                    <h1 className="text-2xl font-bold flex items-center justify-center gap-2 border-b-1 py-3">
+                    <h1 className="text-2xl font-bold flex items-center justify-center gap-2 border-b-1 py-4 sm:py-3 ">
                         <UsersIcon />
-                        Users
+                        <span className="hidden sm:block ">
+                            Users
+                        </span>
                     </h1>
 
                     <ul className="mx-auto">
@@ -130,7 +132,7 @@ const TotalUsers = ({ chats }) => {
                             onlyUsers.map((user, index) => {
 
                                 return (
-                                    <li key={index} className="flex items-center justify-start gap-2 p-2 border-b-1">
+                                    <li key={index} className="flex items-center justify-center sm:justify-start gap-2 p-2 border-b-1 ">
                                         <Badge content="" color={user.status} shape="circle" placement="bottom-right">
                                             <Tooltip
                                                 showArrow
@@ -149,13 +151,13 @@ const TotalUsers = ({ chats }) => {
                                             >
 
                                                 <Avatar
-                                                    className="cursor-pointer"
+                                                    className="cursor-pointer sm:ml-2"
                                                     radius="full"
                                                     src={user.avatar}
                                                 />
                                             </Tooltip>
                                         </Badge>
-                                        <p className="text-base font-medium">{user.name}</p>
+                                        <p className="hidden sm:block text-base font-medium">{user.name}</p>
                                     </li>
                                 )
                             })

@@ -30,6 +30,7 @@ export default function ChatBoxReciever({ avatar, message, color, user }) {
                         <Avatar
                             radius="full"
                             src={avatar}
+                            className='cursor-pointer'
                         />
                     </Tooltip>
                 </Badge>
