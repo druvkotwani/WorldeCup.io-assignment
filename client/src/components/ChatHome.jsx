@@ -13,7 +13,7 @@ const ChatHome = () => {
         navigate('/')
     }
     return (
-        <div className='h-full w-full sm:w-5/6 lg:w-4/6 mx-auto mt-4'>
+        <div className='h-full w-full sm:w-5/6 lg:w-4/6 mx-auto  mt-1'>
             <div className='h-16 bg-[#F6FAFE] flex items-center justify-between px-6 '>
                 <h1 className='sm:text-2xl text-lg  gap-2 presStart flex items-center justify-center'>
                     <ChatIcon />

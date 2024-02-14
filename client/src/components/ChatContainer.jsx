@@ -54,7 +54,7 @@ const ChatContainer = () => {
     return (
         <div className="flex items-start  justify-center bg-[#fef9fa]  border-t ">
             <TotalUsers chats={chats} />
-            <div className="sm:w-3/4 w-full sm:border-l-1 sm:px-2">
+            <div className="sm:w-3/4 w-full sm:border-l-1 ">
                 <div className="flex flex-row justify-between p-2  ">
                     <div className=" flex gap-2 items-center">
                         <Badge content="" color="success" shape="circle" placement="bottom-right">
@@ -68,17 +68,16 @@ const ChatContainer = () => {
                             <p className="text-xs text-gray-500">I 💖 Coding</p>
                         </div>
                     </div>
-
-
                 </div>
 
-                <div className="flex-grow overflow-y-auto  h-[calc(77vh-3rem)]  hide-scrollbar  " ref={chatListRef}>
+                <div className="flex-grow overflow-y-auto border-t border-b h-[calc(100vh-13rem)]   hide-scrollbar  " ref={chatListRef}>
                     <ChatsLists />
                 </div>
-
-                <div className="fixed bottom-0 left-0 right-0 sm:w-4/6 sm:mx-auto z-10">
+                <div className="z-10 flex items-center justify-center mt-auto ">
                     <InputText addMessage={addMessage} />
                 </div>
+
+
             </div>
 
         </div>
@@ -121,7 +120,7 @@ const TotalUsers = ({ chats }) => {
         <>
             <div className="w-1/4 hidden sm:block flex justify-center items-center">
                 <div>
-                    <h1 className="text-2xl font-bold flex items-center justify-center gap-2 border-b-1 py-2">
+                    <h1 className="text-2xl font-bold flex items-center justify-center gap-2 border-b-1 py-3">
                         <UsersIcon />
                         Users
                     </h1>

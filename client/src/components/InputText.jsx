@@ -15,14 +15,14 @@ export default function InputText({ addMessage }) {
     }
 
     return (
-        <div className='w-full flex items-center gap-3  p-3  ' >
-            <form className='w-full' value='message' onSubmit={(e) => {
+        <div className='py-2 flex items-center gap-3 w-[90%]   ' >
+            <form className='w-full ' value='message' onSubmit={(e) => {
                 e.preventDefault()
                 addAMessage()
             }} >
-                <Input type="text" radius='sm' placeholder="Start Chatting..." value={message} onChange={(e) => setMessage(e.target.value)} />
+                <Input color='primary' variant='bordered' type="text" radius='sm' placeholder="Start Chatting..." value={message} onChange={(e) => setMessage(e.target.value)} />
             </form>
-            <Button isIconOnly aria-label="Send message" variant='faded' radius='sm' onClick={() => addAMessage()} >
+            <Button isIconOnly aria-label="Send message" variant='light' onClick={() => addAMessage()} >
                 <SendIcon />
             </Button>
         </div>
