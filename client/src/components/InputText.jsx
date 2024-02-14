@@ -15,7 +15,7 @@ export default function InputText({ addMessage }) {
     }
 
     return (
-        <div className='w-full flex items-center gap-3 mt-2 p-3 border-t ' >
+        <div className='w-full flex items-center gap-3  p-3 border-t ' >
             <form className='w-full' value='message' onSubmit={(e) => {
                 e.preventDefault()
                 addAMessage()

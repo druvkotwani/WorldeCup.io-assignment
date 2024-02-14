@@ -1,6 +1,6 @@
 import { Avatar, Badge } from '@nextui-org/react'
 
-export default function ChatBoxReciever({ avatar, user, message }) {
+export default function ChatBoxReciever({ avatar, message }) {
     const myStyle = {
         borderTopLeftRadius: '0',
         borderTopRightRadius: '0.7em',
@@ -24,7 +24,7 @@ export default function ChatBoxReciever({ avatar, user, message }) {
         </div >
     )
 }
-export function ChatBoxSender({ avatar, user, message }) {
+export function ChatBoxSender({ avatar, message }) {
     const myStyle = {
         borderTopLeftRadius: '0.7em',
         borderTopRightRadius: '0.7em',
