@@ -2,10 +2,10 @@ import socketIOClient from "socket.io-client";
 import { useEffect, useRef, useState } from "react";
 import ChatBoxReciever, { ChatBoxSender } from "./ChatBox";
 import InputText from "./InputText";
-import { Avatar, Badge } from "@nextui-org/react";
+import { Avatar, Badge, Tooltip } from "@nextui-org/react";
 import { UsersIcon } from "../utils/Icons";
 const ChatContainer = () => {
-    let socketio = socketIOClient('https://backedn-zm4f.onrender.com');
+    // let socketio = socketIOClient('https://backedn-zm4f.onrender.com');
     const [chats, setChats] = useState([
         { user: 'Bot-1', message: 'This assignment is done by Dhruv', avatar: '/images/4.png', status: 'warning' },
         { user: 'Bot-2', message: 'These are hardcoded text', avatar: '/images/5.svg', status: 'default' },
@@ -14,16 +14,16 @@ const ChatContainer = () => {
     const [user, setUser] = useState(localStorage.getItem('name'))
     const [avatar, setAvatar] = useState(localStorage.getItem('avatar'))
 
-    useEffect(() => {
-        socketio.on('chat', (msg) => {
-            setChats([...chats, msg])
-        })
-    })
+    // useEffect(() => {
+    //     socketio.on('chat', (msg) => {
+    //         setChats([...chats, msg])
+    //     })
+    // })
 
 
 
     function sendChatToSocket(chat) {
-        socketio.emit('chat', chat)
+        // socketio.emit('chat', chat)
     }
 
     function addMessage(chat) {
@@ -36,9 +36,9 @@ const ChatContainer = () => {
     function ChatsLists() {
         return chats.map((chat, index) => {
             if (chat.user === user) {
-                return <ChatBoxSender key={index} message={chat.message} avatar={chat.avatar} color={chat.status} />
+                return <ChatBoxSender key={index} message={chat.message} avatar={chat.avatar} color={chat.status} user={chat.user} />
             } else {
-                return <ChatBoxReciever key={index} message={chat.message} avatar={chat.avatar} color={chat.status} />
+                return <ChatBoxReciever key={index} message={chat.message} avatar={chat.avatar} color={chat.status} user={chat.user} />
             }
         })
     }
@@ -132,10 +132,28 @@ const TotalUsers = ({ chats }) => {
                                 return (
                                     <li key={index} className="flex items-center justify-start gap-2 p-2 border-b-1">
                                         <Badge content="" color={user.status} shape="circle" placement="bottom-right">
-                                            <Avatar
-                                                radius="full"
-                                                src={user.avatar}
-                                            />
+                                            <Tooltip
+                                                showArrow
+                                                placement="right"
+                                                content={"I'm " + user.name}
+                                                classNames={{
+                                                    base: [
+                                                        // arrow color
+                                                        "before:bg-neutral-400 dark:before:bg-white",
+                                                    ],
+                                                    content: [
+                                                        "py-2 px-4 shadow-xl",
+                                                        "text-black bg-gradient-to-br from-white to-neutral-400",
+                                                    ],
+                                                }}
+                                            >
+
+                                                <Avatar
+                                                    className="cursor-pointer"
+                                                    radius="full"
+                                                    src={user.avatar}
+                                                />
+                                            </Tooltip>
                                         </Badge>
                                         <p className="text-base font-medium">{user.name}</p>
                                     </li>

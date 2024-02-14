@@ -1,6 +1,6 @@
-import { Avatar, Badge } from '@nextui-org/react'
+import { Avatar, Badge, Tooltip } from '@nextui-org/react'
 
-export default function ChatBoxReciever({ avatar, message, color }) {
+export default function ChatBoxReciever({ avatar, message, color, user }) {
     const myStyle = {
         borderTopLeftRadius: '0',
         borderTopRightRadius: '0.7em',
@@ -12,10 +12,26 @@ export default function ChatBoxReciever({ avatar, message, color }) {
 
             <div>
                 <Badge content="" color={color} shape="circle" placement="bottom-right">
-                    <Avatar
-                        radius="full"
-                        src={avatar}
-                    />
+                    <Tooltip
+                        showArrow
+                        placement="left"
+                        content={"I'm " + user}
+                        classNames={{
+                            base: [
+                                // arrow color
+                                "before:bg-neutral-400 dark:before:bg-white",
+                            ],
+                            content: [
+                                "py-2 px-4 shadow-xl",
+                                "text-black bg-gradient-to-br from-white to-neutral-400",
+                            ],
+                        }}
+                    >
+                        <Avatar
+                            radius="full"
+                            src={avatar}
+                        />
+                    </Tooltip>
                 </Badge>
             </div>
 
@@ -38,6 +54,7 @@ export function ChatBoxSender({ avatar, message, color }) {
             <div>
 
                 <Badge content="" color={color} shape="circle" placement="bottom-right">
+
                     <Avatar
                         radius="full"
                         src={avatar}
