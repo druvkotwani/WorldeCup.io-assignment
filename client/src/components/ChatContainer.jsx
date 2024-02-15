@@ -2,8 +2,8 @@ import socketIOClient from "socket.io-client";
 import { useEffect, useRef, useState } from "react";
 import ChatBoxReciever, { ChatBoxSender } from "./ChatBox";
 import InputText from "./InputText";
-import { Avatar, Badge, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Tooltip } from "@nextui-org/react";
-import { LogoutIcon, SettingIcon, UserIcon, UsersIcon } from "../utils/Icons";
+import { Avatar, Badge, Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Tooltip } from "@nextui-org/react";
+import { CallIcon, LogoutIcon, NotificationIcon, SettingIcon, UserIcon, UsersIcon, VideoIcon } from "../utils/Icons";
 const ChatContainer = ({ logout }) => {
     // let socketio = socketIOClient('http://localhost:3000');
     const [chats, setChats] = useState([
@@ -79,6 +79,18 @@ const ChatContainer = ({ logout }) => {
                         <div className="">
                             <p className="text-base font-bold">{user}</p>
                             <p className="text-xs text-gray-500">I 💖 Coding</p>
+                        </div>
+                    </div>
+
+                    <div className="flex items-center gap-3 px-2 sm:px-4">
+                        <div className="border-0 bg-transparent cursor-pointer">
+                            <VideoIcon />
+                        </div>
+                        <div className="border-0 bg-transparent cursor-pointer">
+                            <CallIcon />
+                        </div>
+                        <div className="border-0 bg-transparent cursor-pointer">
+                            <NotificationIcon />
                         </div>
                     </div>
                 </div>
