@@ -7,6 +7,7 @@ export default function InputText({ addMessage }) {
     const [message, setMessage] = useState('')
 
     function addAMessage() {
+        if (message.length === 0) return
         console.log(message)
         addMessage({
             message
@@ -22,7 +23,7 @@ export default function InputText({ addMessage }) {
             }} >
                 <Input color='primary' variant='bordered' type="text" radius='sm' placeholder="Start Chatting..." value={message} onChange={(e) => setMessage(e.target.value)} />
             </form>
-            <Button isIconOnly aria-label="Send message" variant='light' onClick={() => addAMessage()} >
+            <Button disabled={message.length == 0 ? true : false} isIconOnly aria-label="Send message" variant='light' onClick={() => addAMessage()} >
                 <SendIcon />
             </Button>
         </div>
