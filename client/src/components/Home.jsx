@@ -1,4 +1,3 @@
-import { Avatar, Navbar } from "@nextui-org/react";
 import { Input, Button } from "@nextui-org/react";
 import { TrophyIcon, UserIcon } from "../utils/Icons";
 import { useState, useMemo } from "react";
@@ -27,12 +26,11 @@ export default function Home() {
         setName('');
 
     };
-    const backgroundImageUrl = "https://wordlecup.io/static/media/greybackground.40cdbc3f043f9a9c9357.webp";
 
     return (
-        <div className="bg-cover" style={{ backgroundImage: `url(${backgroundImageUrl})` }}>
+        <div className="bg-cover" style={{ backgroundImage: `url('/images/background.webp')` }}>
             <div className="flex flex-col items-center justify-center h-screen">
-                {/* <Avatar radius='sm' size="xl" src={`https://i.pravatar.cc/150?u=a04258a${random}2d826712d`} /> */}
+
                 <div className="fixed top-5  pb-3 sm:px-12 px-6 border-b w-full flex items-center justify-between ">
                     <h1 className=" sm:text-4xl text-white font-bold text-2xl flex gap-3 items-center justify-center">
                         <img src="/images/wordlecup.png" alt="wordle" className="h-8 w-8 sm:w-10  sm:h-10" />
@@ -41,9 +39,15 @@ export default function Home() {
                     <span className="text-white">Hi</span>
                 </div>
 
-                <div className="flex  gap-2 items-center justify-center my-4 w-full" >
+                <ul className="flex items-center justify-center gap-2">
+                    <li className="flex justify-center items-center">
+                        <p className="text-xl sm:text-xl font-bold text-white">Select your avatar:</p>
 
-                    <form value={name} className="sm:w-1/6 w-3/6 mx-2" onSubmit={(e) => handleSubmit(e)}>
+                    </li>
+                </ul>
+
+                <div className="flex  gap-2 items-center justify-center my-4 w-full" >
+                    <form value={name} className="sm:w-2/6 lg:w-1/6 w-3/6 mx-2" onSubmit={(e) => handleSubmit(e)}>
                         <Input radius='sm' type="text" placeholder="Enter Your Name.." value={name} onChange={handleChange} />
                     </form>
                     <Button onClick={handleSubmit} color="primary" radius='sm' startContent={<UserIcon />} >

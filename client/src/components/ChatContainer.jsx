@@ -2,10 +2,10 @@ import socketIOClient from "socket.io-client";
 import { useEffect, useRef, useState } from "react";
 import ChatBoxReciever, { ChatBoxSender } from "./ChatBox";
 import InputText from "./InputText";
-import { Avatar, Badge, Tooltip } from "@nextui-org/react";
-import { UsersIcon } from "../utils/Icons";
-const ChatContainer = () => {
-    let socketio = socketIOClient('https://backedn-zm4f.onrender.com');
+import { Avatar, Badge, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Tooltip } from "@nextui-org/react";
+import { LogoutIcon, SettingIcon, UserIcon, UsersIcon } from "../utils/Icons";
+const ChatContainer = ({ logout }) => {
+    // let socketio = socketIOClient('http://localhost:3000');
     const [chats, setChats] = useState([
         { user: 'Bot-1', message: 'This assignment is done by Dhruv', avatar: '/images/4.png', status: 'warning' },
         { user: 'Bot-2', message: 'These are hardcoded text', avatar: '/images/5.svg', status: 'default' },
@@ -14,16 +14,16 @@ const ChatContainer = () => {
     const [user, setUser] = useState(localStorage.getItem('name'))
     const [avatar, setAvatar] = useState(localStorage.getItem('avatar'))
 
-    useEffect(() => {
-        socketio.on('chat', (msg) => {
-            setChats([...chats, msg])
-        })
-    })
+    // useEffect(() => {
+    //     socketio.on('chat', (msg) => {
+    //         setChats([...chats, msg])
+    //     })
+    // })
 
 
 
     function sendChatToSocket(chat) {
-        socketio.emit('chat', chat)
+        // socketio.emit('chat', chat)
     }
 
     function addMessage(chat) {
@@ -57,12 +57,25 @@ const ChatContainer = () => {
             <div className="sm:w-3/4 w-full border-l-1 ">
                 <div className="flex flex-row justify-between p-2  ">
                     <div className=" flex gap-2 items-center">
-                        <Badge content="" color="success" shape="circle" placement="bottom-right">
-                            <Avatar
-                                radius="full"
-                                src={avatar}
-                            />
-                        </Badge>
+                        <Dropdown backdrop="blur">
+                            <DropdownTrigger>
+                                <div className="inline-flex   ">
+                                    <Badge content="" color="success" shape="circle" placement="bottom-right">
+                                        <Avatar
+                                            radius="full"
+                                            src={avatar}
+                                        />
+                                    </Badge>
+                                </div>
+                            </DropdownTrigger>
+                            <DropdownMenu variant="faded" aria-label="Static Actions">
+                                <DropdownItem key="profile" endContent={<UserIcon width="20" height="20" />}>Profile</DropdownItem>
+                                <DropdownItem key="settings" endContent={<SettingIcon />}>Settings</DropdownItem>
+                                <DropdownItem onClick={() => logout()} key="Logout" className="text-danger" color="danger" endContent={<LogoutIcon width="20" height="20" />}>
+                                    Logout
+                                </DropdownItem>
+                            </DropdownMenu>
+                        </Dropdown>
                         <div className="">
                             <p className="text-base font-bold">{user}</p>
                             <p className="text-xs text-gray-500">I 💖 Coding</p>

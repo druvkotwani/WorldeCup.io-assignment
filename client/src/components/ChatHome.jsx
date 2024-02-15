@@ -25,7 +25,7 @@ const ChatHome = () => {
                 </Button>
             </div>
             <div>
-                <ChatContainer />
+                <ChatContainer logout={logout} />
             </div>
         </div>
     );
