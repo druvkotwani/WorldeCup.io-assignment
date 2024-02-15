@@ -9,6 +9,10 @@ This project is the assignment given to us by Mehar Kaila from WrodleCup.io 🚀
 ![image](https://github.com/druvkotwani/WorldeCup.io-assignment/assets/96691139/e83921a9-dc1e-47b4-a707-7abbf1f12419)
  
 
+https://github.com/druvkotwani/WorldeCup.io-assignment/assets/96691139/b62f5934-7829-4f36-b8e3-30fc6c619470
+
+
+
 
 
 ## Languages/Tools
