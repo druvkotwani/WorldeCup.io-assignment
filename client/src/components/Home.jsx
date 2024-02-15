@@ -44,8 +44,9 @@ export default function Home() {
                 </div>
 
                 <div className="inline-flex w-full items-center justify-center gap-2">
-                    <p className="text-xl sm:text-xl font-bold text-white">Select your status:</p>
-                    <div className="flex justify-center items-center xl:w-[10%] w-3/6 md:w-2/6 lg ">
+                    <p className="hidden sm:block sm:text-xl font-bold text-white">Select your status:</p>
+                    <p className="text-base sm:hidden sm:text-xl font-bold text-white">Select status:</p>
+                    <div className="flex justify-center items-center xl:w-[12%] w-3/6 md:w-[20%] lg:w-[14%] ">
                         <SelectStatus handleChange={handleSelectChange} />
                     </div>
                 </div>
@@ -61,7 +62,7 @@ export default function Home() {
                 </div>
 
                 <div className="fixed bottom-1 mb-1 sm:px-12 px-6 border-t w-full flex items-center justify-center ">
-                    <p className="text-base mt-4 text-white">ChatApp Asignment done with 💗 by
+                    <p className="text-xs sm:text-base mt-1 sm:mt-3 text-white">ChatApp Asignment done with 💗 by
                         <a href="https://dhruvkotwani.me" className="text-primary text-base"> Dhruv</a>
                     </p>
                 </div>
