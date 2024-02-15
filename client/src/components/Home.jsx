@@ -11,7 +11,7 @@ export default function Home() {
     const getRandomIndex = () => Math.floor(Math.random() * 999);
     const random = useMemo(() => getRandomIndex(), []);
     const navigate = useNavigate();
-
+    const [about, setAbout] = useState('I 💗 Coding');
     const handleChange = (e) => {
         setName(e.target.value);
     };
@@ -24,11 +24,24 @@ export default function Home() {
         {
             name.length > 0 && navigate('/chats');
         }
+        localStorage.setItem('about', about);
+
         setName('');
 
     };
+
+    const handleSubmitAbout = (e) => {
+        e.preventDefault();
+        localStorage.setItem('about', about);
+
+    }
     const handleSelectChange = (e) => {
         localStorage.setItem('status', e.target.value);
+    };
+
+    const handleSetAbout = (e) => {
+        console.log(e.target.value)
+        setAbout(e.target.value);
     };
 
 
@@ -43,22 +56,32 @@ export default function Home() {
                     </h1>
                 </div>
 
-                <div className="inline-flex w-full items-center justify-center gap-2">
-                    <p className="hidden sm:block sm:text-xl font-bold text-white">Select your status:</p>
-                    <p className="text-base sm:hidden sm:text-xl font-bold text-white">Select status:</p>
-                    <div className="flex justify-center items-center xl:w-[12%] w-3/6 md:w-[20%] lg:w-[14%] ">
-                        <SelectStatus handleChange={handleSelectChange} />
+                <div className="flex items-center justify-start flex-col w-full   gap-2 my-4 " >
+                    <div className="inline-flex w-full items-center justify-center gap-2">
+                        <p className=" sm:text-xl font-bold text-white">Select status:</p>
+                        <div className="flex justify-center items-center xl:w-[12%] w-3/6 md:w-[20%] lg:w-[14%] ">
+                            <SelectStatus handleChange={handleSelectChange} />
+                        </div>
                     </div>
-                </div>
 
 
-                <div className="flex  gap-2 items-center justify-center my-4 w-full" >
-                    <form value={name} className="sm:w-2/6 lg:w-1/6 w-3/6 mx-2" onSubmit={(e) => handleSubmit(e)}>
-                        <Input radius='sm' type="text" placeholder="Enter Your Name.." value={name} onChange={handleChange} />
-                    </form>
-                    <Button onClick={handleSubmit} color="primary" radius='sm' startContent={<UserIcon />} >
-                        Login
-                    </Button>
+                    <div className="flex  gap-2 items-center justify-center w-full my-4 " >
+                        <p className=" sm:text-xl font-bold text-white">About yourself:</p>
+                        <form value={about} className="xl:w-[12%] w-3/6 md:w-[20%] lg:w-[14%] " onSubmit={(e) => handleSubmitAbout(e)}>
+                            <Input radius='sm' type="text" placeholder="About Yourself.." value={about} onChange={handleSetAbout} />
+                        </form>
+
+                    </div>
+
+
+                    <div className="flex  gap-2 items-center justify-center my-4 w-full" >
+                        <form value={name} className="sm:w-2/6 lg:w-1/6 w-3/6 mx-2" onSubmit={(e) => handleSubmit(e)}>
+                            <Input radius='sm' type="text" placeholder="Enter Your Name.." value={name} onChange={handleChange} />
+                        </form>
+                        <Button onClick={handleSubmit} color="primary" radius='sm' startContent={<UserIcon />} >
+                            Login
+                        </Button>
+                    </div>
                 </div>
 
                 <div className="fixed bottom-1 mb-1 sm:px-12 px-6 border-t w-full flex items-center justify-center ">

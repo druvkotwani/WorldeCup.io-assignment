@@ -10,6 +10,7 @@ const ChatHome = () => {
         localStorage.removeItem('name')
         localStorage.removeItem('avatar')
         localStorage.removeItem('status')
+        localStorage.removeItem('about')
         // setUser('')
         navigate('/')
     }

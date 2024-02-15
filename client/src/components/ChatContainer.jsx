@@ -6,7 +6,7 @@ import { Avatar, Badge, Button, Dropdown, DropdownItem, DropdownMenu, DropdownTr
 import { CallIcon, LogoutIcon, NotificationIcon, SettingIcon, UserIcon, UsersIcon, VideoIcon } from "../utils/Icons";
 
 const ChatContainer = ({ logout }) => {
-    // let socketio = socketIOClient('http://localhost:3000');
+    let socketio = socketIOClient('https://backedn-zm4f.onrender.com');
     const [chats, setChats] = useState([
         { user: 'Bot-1', message: 'This assignment is done by Dhruv', avatar: '/images/4.png', status: 'warning' },
         { user: 'Bot-2', message: 'These are hardcoded text', avatar: '/images/5.svg', status: 'default' },
@@ -14,17 +14,18 @@ const ChatContainer = ({ logout }) => {
     ]);
     const [user, setUser] = useState(localStorage.getItem('name'))
     const [avatar, setAvatar] = useState(localStorage.getItem('avatar'))
+    const about = localStorage.getItem('about') || 'I 💖 Coding'
 
-    // useEffect(() => {
-    //     socketio.on('chat', (msg) => {
-    //         setChats([...chats, msg])
-    //     })
-    // })
+    useEffect(() => {
+        socketio.on('chat', (msg) => {
+            setChats([...chats, msg])
+        })
+    })
 
 
 
     function sendChatToSocket(chat) {
-        // socketio.emit('chat', chat)
+        socketio.emit('chat', chat)
     }
 
     function addMessage(chat) {
@@ -79,7 +80,7 @@ const ChatContainer = ({ logout }) => {
                         </Dropdown>
                         <div className="">
                             <p className="text-base font-bold">{user}</p>
-                            <p className="text-xs text-gray-500">I 💖 Coding</p>
+                            <p className="text-xs text-gray-500">{about}</p>
                         </div>
                     </div>
 
@@ -91,9 +92,6 @@ const ChatContainer = ({ logout }) => {
                         </div>
                         <div className="border-0 bg-transparent cursor-pointer">
                             <CallIcon />
-                        </div>
-                        <div className="border-0 bg-transparent cursor-pointer">
-                            <NotificationIcon />
                         </div>
                     </div>
                 </div>
@@ -143,7 +141,6 @@ const TotalUsers = ({ chats }) => {
     }));
 
 
-    console.log(onlyUsers)
     return (
         <>
             <div className="w-1/4 justify-center items-center">

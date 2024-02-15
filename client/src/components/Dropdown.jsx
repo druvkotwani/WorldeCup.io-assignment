@@ -9,9 +9,8 @@ export default function SelectStatus({ handleChange, }) {
 
             <Select
                 label="Select  Status"
-                className=""
-                va
                 onChange={handleChange}
+                radius="sm"
             >
                 {animals.map((animal) => (
                     <SelectItem
