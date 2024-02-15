@@ -36,23 +36,20 @@ export default function Home() {
         <div className="bg-cover" style={{ backgroundImage: `url('/images/background.webp')` }}>
             <div className="flex flex-col items-center justify-center h-screen">
 
-                <div className="fixed top-5  pb-3 sm:px-12 px-6 border-b w-full flex items-center justify-between ">
+                <div className="fixed top-5  pb-3 sm:px-12 px-6 border-b w-full flex items-center justify-center ">
                     <h1 className=" sm:text-4xl text-white font-bold text-2xl flex gap-3 items-center justify-center">
                         <img src="/images/wordlecup.png" alt="wordle" className="h-8 w-8 sm:w-10  sm:h-10" />
                         WordleCup.io
                     </h1>
-                    <span className="text-white">Hi</span>
                 </div>
 
-                <ul className="flex flex-col items-center justify-center gap-2">
-                    <li className="flex  justify-center items-center">
-                        <p className="text-xl sm:text-xl font-bold text-white">Select your avatar:</p>
-
-                    </li>
-                    <li className="w-full">
+                <div className="inline-flex w-full items-center justify-center gap-2">
+                    <p className="text-xl sm:text-xl font-bold text-white">Select your status:</p>
+                    <div className="flex justify-center items-center xl:w-[10%] w-3/6 md:w-2/6 lg ">
                         <SelectStatus handleChange={handleSelectChange} />
-                    </li>
-                </ul>
+                    </div>
+                </div>
+
 
                 <div className="flex  gap-2 items-center justify-center my-4 w-full" >
                     <form value={name} className="sm:w-2/6 lg:w-1/6 w-3/6 mx-2" onSubmit={(e) => handleSubmit(e)}>
@@ -63,8 +60,12 @@ export default function Home() {
                     </Button>
                 </div>
 
+                <div className="fixed bottom-1 mb-1 sm:px-12 px-6 border-t w-full flex items-center justify-center ">
+                    <p className="text-base mt-4 text-white">ChatApp Asignment done with 💗 by
+                        <a href="https://dhruvkotwani.me" className="text-primary text-base"> Dhruv</a>
+                    </p>
+                </div>
 
-                {/* <p className="text-lg mt-4 text-white">Created with 💗 by Dhruv</p> */}
             </div>
 
 

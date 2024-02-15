@@ -28,7 +28,7 @@ const ChatContainer = ({ logout }) => {
     }
 
     function addMessage(chat) {
-        const newChat = { ...chat, user, avatar, status: localStorage.getItem('status') }
+        const newChat = { ...chat, user, avatar, status: localStorage.getItem('status') || 'success' }
         setChats([...chats, newChat])
         sendChatToSocket(newChat)
     }
@@ -127,7 +127,7 @@ const TotalUsers = ({ chats }) => {
     uniqueUsers.push({
         user: localStorage.getItem('name'),
         avatar: localStorage.getItem('avatar'),
-        status: localStorage.getItem('status')
+        status: localStorage.getItem('status') || 'success'
     });
 
     uniqueUsers.forEach(user => {

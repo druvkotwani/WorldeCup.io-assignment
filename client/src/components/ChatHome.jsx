@@ -9,6 +9,7 @@ const ChatHome = () => {
     function logout() {
         localStorage.removeItem('name')
         localStorage.removeItem('avatar')
+        localStorage.removeItem('status')
         // setUser('')
         navigate('/')
     }

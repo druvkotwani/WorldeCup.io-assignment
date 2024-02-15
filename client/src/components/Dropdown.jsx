@@ -8,8 +8,8 @@ export default function SelectStatus({ handleChange, }) {
         <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
 
             <Select
-                label="Select your Status"
-                className="max-w-xs"
+                label="Select  Status"
+                className=""
                 va
                 onChange={handleChange}
             >
