@@ -5,10 +5,14 @@ This project is the assignment given to us by Mehar Kaila from WrodleCup.io 🚀
 ## Screenshots
 
 ![image](https://github.com/druvkotwani/WorldeCup.io-assignment/assets/96691139/f9ba1667-383b-41d9-bdf1-d6565fe3af58)
-![1](https://github.com/druvkotwani/WorldeCup.io-assignment/assets/96691139/e50e0dbe-367c-46bb-af47-58c100359010)
 ![image](https://github.com/druvkotwani/WorldeCup.io-assignment/assets/96691139/e83921a9-dc1e-47b4-a707-7abbf1f12419)
- 
+![image](https://github.com/druvkotwani/WorldeCup.io-assignment/assets/96691139/3abeaa7f-9e49-4964-b3cc-5e606f6933f9)
 
+### Responsive [Mobile Devices]
+![image](https://github.com/druvkotwani/WorldeCup.io-assignment/assets/96691139/ac816640-e771-488c-a4ae-f37c590418fe)
+
+ 
+### Video of the working Project
 https://github.com/druvkotwani/WorldeCup.io-assignment/assets/96691139/b62f5934-7829-4f36-b8e3-30fc6c619470
 
 
