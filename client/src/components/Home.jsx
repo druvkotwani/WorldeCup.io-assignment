@@ -3,7 +3,8 @@ import { TrophyIcon, UserIcon } from "../utils/Icons";
 import { useState, useMemo } from "react";
 import { useNavigate } from 'react-router-dom';
 import _ from 'lodash'
-
+import SelectStatus from "./Dropdown";
+import { animals } from "./Dropdown";
 
 export default function Home() {
     const [name, setName] = useState('');
@@ -26,6 +27,10 @@ export default function Home() {
         setName('');
 
     };
+    const handleSelectChange = (e) => {
+        localStorage.setItem('status', e.target.value);
+    };
+
 
     return (
         <div className="bg-cover" style={{ backgroundImage: `url('/images/background.webp')` }}>
@@ -39,10 +44,13 @@ export default function Home() {
                     <span className="text-white">Hi</span>
                 </div>
 
-                <ul className="flex items-center justify-center gap-2">
-                    <li className="flex justify-center items-center">
+                <ul className="flex flex-col items-center justify-center gap-2">
+                    <li className="flex  justify-center items-center">
                         <p className="text-xl sm:text-xl font-bold text-white">Select your avatar:</p>
 
+                    </li>
+                    <li className="w-full">
+                        <SelectStatus handleChange={handleSelectChange} />
                     </li>
                 </ul>
 

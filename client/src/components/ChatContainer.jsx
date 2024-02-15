@@ -4,6 +4,7 @@ import ChatBoxReciever, { ChatBoxSender } from "./ChatBox";
 import InputText from "./InputText";
 import { Avatar, Badge, Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Tooltip } from "@nextui-org/react";
 import { CallIcon, LogoutIcon, NotificationIcon, SettingIcon, UserIcon, UsersIcon, VideoIcon } from "../utils/Icons";
+
 const ChatContainer = ({ logout }) => {
     // let socketio = socketIOClient('http://localhost:3000');
     const [chats, setChats] = useState([
@@ -27,7 +28,7 @@ const ChatContainer = ({ logout }) => {
     }
 
     function addMessage(chat) {
-        const newChat = { ...chat, user, avatar, status: 'success' }
+        const newChat = { ...chat, user, avatar, status: localStorage.getItem('status') }
         setChats([...chats, newChat])
         sendChatToSocket(newChat)
     }
@@ -60,7 +61,7 @@ const ChatContainer = ({ logout }) => {
                         <Dropdown backdrop="blur">
                             <DropdownTrigger>
                                 <div className="inline-flex   ">
-                                    <Badge content="" color="success" shape="circle" placement="bottom-right">
+                                    <Badge content="" color={localStorage.getItem('status') || 'success'} shape="circle" placement="bottom-right">
                                         <Avatar
                                             radius="full"
                                             src={avatar}
@@ -81,6 +82,8 @@ const ChatContainer = ({ logout }) => {
                             <p className="text-xs text-gray-500">I 💖 Coding</p>
                         </div>
                     </div>
+
+
 
                     <div className="flex items-center gap-3 px-2 sm:px-4">
                         <div className="border-0 bg-transparent cursor-pointer">
@@ -124,7 +127,7 @@ const TotalUsers = ({ chats }) => {
     uniqueUsers.push({
         user: localStorage.getItem('name'),
         avatar: localStorage.getItem('avatar'),
-        status: 'success'
+        status: localStorage.getItem('status')
     });
 
     uniqueUsers.forEach(user => {
