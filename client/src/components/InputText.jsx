@@ -2,30 +2,50 @@ import React, { useState } from 'react'
 import { Input, Button } from "@nextui-org/react";
 import { SendIcon } from '../utils/Icons';
 
-export default function InputText({ addMessage }) {
+const InputText = ({ addMessage, handleTyping }) => {
+    const [message, setMessage] = useState('');
 
-    const [message, setMessage] = useState('')
+    const addAMessage = () => {
+        if (message.trim().length === 0) return;
+        addMessage({ message });
+        setMessage('');
+    };
 
-    function addAMessage() {
-        if (message.length === 0) return
-        console.log(message)
-        addMessage({
-            message
-        })
-        setMessage('')
-    }
+    const handleChange = (e) => {
+        setMessage(e.target.value);
+        // Call handleTyping to indicate that the user is typing
+        handleTyping();
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        addAMessage();
+    };
 
     return (
-        <div className='py-2 flex items-center gap-3 w-[90%]   ' >
-            <form className='w-full ' value='message' onSubmit={(e) => {
-                e.preventDefault()
-                addAMessage()
-            }} >
-                <Input color='primary' variant='bordered' type="text" radius='sm' placeholder="Start Chatting..." value={message} onChange={(e) => setMessage(e.target.value)} />
+        <div className='py-2 flex items-center gap-3 w-[90%]'>
+            <form className='w-full' onSubmit={handleSubmit}>
+                <Input
+                    color='primary'
+                    variant='bordered'
+                    type="text"
+                    radius='sm'
+                    placeholder="Start Chatting..."
+                    value={message}
+                    onChange={handleChange}
+                />
             </form>
-            <Button disabled={message.length == 0 ? true : false} isIconOnly aria-label="Send message" variant='light' onClick={() => addAMessage()} >
+            <Button
+                disabled={message.trim().length === 0}
+                isIconOnly
+                aria-label="Send message"
+                variant='light'
+                onClick={addAMessage}
+            >
                 <SendIcon />
             </Button>
         </div>
-    )
-}
+    );
+};
+
+export default InputText;

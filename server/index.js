@@ -18,6 +18,11 @@ io.on('connection', (socket) => {
         io.emit('chat', msg);
     });
 
+    socket.on('typing', ({ user, status, avatar }) => {
+        console.log(`${user} ${status} ${avatar}`)
+        socket.broadcast.emit('typing', { user, avatar, status });
+    })
+
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });
